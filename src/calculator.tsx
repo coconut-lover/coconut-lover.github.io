@@ -4,7 +4,7 @@ import { SUBJUGATION_LIST, CHEHWA_MAX } from './types';
 const AccuracyCalculator: React.FC = () => {
   const [selectedLevel, setSelectedLevel] = useState<number>(25);
   const [stats, setStats] = useState({
-    charAcc: 0, monsterAcc: 0, somaAcc: 0, charSkillAcc: 0, aqueAcc: 0, etcAcc: 0
+    charAcc: 0, monsterAcc: 0, somaAcc: 0, charSkillAcc: 0, etcAcc: 0
   });
   const [chehwa, setChehwa] = useState({ combat: 0, focus: 0, transcend: 0 });
   const [isSealingWar, setIsSealingWar] = useState<boolean>(false);
@@ -31,7 +31,7 @@ const AccuracyCalculator: React.FC = () => {
   const result = useMemo(() => {
     const target = SUBJUGATION_LIST.find(s => s.level === selectedLevel);
     if (!target) return null;
-    const totalAcc = stats.charAcc + stats.monsterAcc + stats.somaAcc + stats.aqueAcc + stats.etcAcc + (isSealingWar ? 5 : 0) + extraStats.stoneAcc + extraStats.totalChehwaAcc;
+    const totalAcc = stats.charAcc + stats.monsterAcc + stats.somaAcc + stats.etcAcc + (isSealingWar ? 5 : 0) + extraStats.stoneAcc + extraStats.totalChehwaAcc;
     const totalSkillAcc = stats.charSkillAcc + stats.monsterAcc + extraStats.stoneSkillAcc;
     return { totalAcc, totalSkillAcc, isAccOk: totalAcc >= target.reqAccuracy, isSkillAccOk: totalSkillAcc >= target.reqSkillAccuracy, reqAcc: target.reqAccuracy, reqSkillAcc: target.reqSkillAccuracy };
   }, [stats, isSealingWar, selectedLevel, extraStats]);
@@ -74,7 +74,7 @@ const AccuracyCalculator: React.FC = () => {
             {/* 1. 기본 스탯 */}
             <div style={flexColumnStyle}>
               <h4 style={subTitleStyle}>📊 기본 스탯</h4>
-              {['charAcc', 'monsterAcc', 'somaAcc', 'charSkillAcc', 'aqueAcc'].map((field) => (
+              {['charAcc', 'monsterAcc', 'somaAcc', 'charSkillAcc'].map((field) => (
                 <div key={field} style={inputRowStyle}>
                   <label style={labelStyle}>{getFieldName(field)}</label>
                   <input type="number" name={field} onChange={handleStatChange} style={inputStyle} />
@@ -167,7 +167,7 @@ const inputStyle: React.CSSProperties = { width: '70px', padding: '7px', borderR
 const infoBtnStyle: React.CSSProperties = { width: '18px', height: '18px', borderRadius: '50%', border: 'none', backgroundColor: '#3498db', color: 'white', fontSize: '12px', cursor: 'pointer', display: 'inline-flex', justifyContent: 'center', alignItems: 'center' };
 const tooltipStyle: React.CSSProperties = { position: 'absolute', top: '45px', left: '15px', backgroundColor: '#333', color: '#fff', padding: '12px', borderRadius: '8px', fontSize: '0.8rem', zIndex: 10, width: '200px', boxShadow: '0 4px 12px rgba(0,0,0,0.2)', lineHeight: '1.5' };
 
-const getFieldName = (n: string) => ({ charAcc: '캐릭터 명중', monsterAcc: '일몬 명중', somaAcc: '소마 명중', charSkillAcc: '캐릭터 스킬명중', aqueAcc: '아퀴 명중' }[n] || n);
+const getFieldName = (n: string) => ({ charAcc: '캐릭터 명중', monsterAcc: '일몬 명중', somaAcc: '소마 명중', charSkillAcc: '캐릭터 스킬명중'}[n] || n);
 const getChehwaName = (n: string) => ({ combat: '전투체화', focus: '집중체화', transcend: '초월체화' }[n] || n);
 
 export default AccuracyCalculator;
