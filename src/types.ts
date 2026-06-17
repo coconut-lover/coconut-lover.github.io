@@ -17,6 +17,7 @@ export const SUBJUGATION_LIST: SubjugationData[] = [
   { level: 23, reqAccuracy: 1300, reqSkillAccuracy: 750 },
   { level: 24, reqAccuracy: 1370, reqSkillAccuracy: 800 },
   { level: 25, reqAccuracy: 1440, reqSkillAccuracy: 840 },
+  { level: 26, reqAccuracy: 1510, reqSkillAccuracy: 880 },
 ];
 
 export interface SubjugationData {
